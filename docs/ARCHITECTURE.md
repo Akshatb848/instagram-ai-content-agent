@@ -9,8 +9,8 @@ GitHub Actions schedule -> signed n8n webhook -> ingestion/ranking/verification
                                               -> Cloudinary preview -> Telegram approval
                                               -> official Instagram Graph API -> metrics/history
 
-n8n on eligible GCE e2-micro <-> PostgreSQL/Supabase
-local development               <-> SQLite
+n8n on owner-operated machine + Tailscale Funnel <-> PostgreSQL/Supabase
+local development                              <-> SQLite
 ```
 
 ## Trust boundaries
@@ -19,5 +19,4 @@ External feeds and media are untrusted. URLs pass scheme, DNS/IP, allowlist, siz
 
 ## Cost boundary
 
-The orchestrator uses one eligible e2-micro VM. Rendering runs only on bounded GitHub Actions jobs. Limits are enforced in application code before provider calls or dispatch. No paid fallback is permitted. See ADR-001 for the decision and trade-offs.
-
+The orchestrator uses an always-on machine already owned by the user and a free Tailscale Funnel HTTPS endpoint. Rendering runs only on bounded GitHub Actions jobs. Limits are enforced in application code before provider calls or dispatch. No paid fallback is permitted. See ADR-001 and `EXTERNAL_SETUP.md` for the decision and trade-offs.

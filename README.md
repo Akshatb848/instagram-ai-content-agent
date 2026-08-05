@@ -18,4 +18,6 @@ Publication is rejected unless the Reel has no unsupported claims, verification 
 
 See `MANUAL_ACTIONS_REQUIRED.md` before any external deployment.
 
+Google Cloud is not part of the active deployment profile. See `docs/EXTERNAL_SETUP.md` for the zero-cost, owner-operated host plus Tailscale Funnel setup and every external provider phase.
+
 Follow [the external verification runbook](docs/EXTERNAL_VERIFICATION_RUNBOOK.md) for the complete GitHub, Google Cloud, Gemini, provider, Meta, and HTTPS setup sequence.

@@ -9,12 +9,12 @@ The supplied requirements describe both Cloud Run hosting/render jobs and a late
 
 ## Decision
 
-Use an eligible e2-micro VM for n8n and a lightweight HTTPS proxy. Use GitHub Actions for FFmpeg rendering. Use SQLite locally and PostgreSQL/Supabase in hosted environments through SQLAlchemy. Keep Cloud Run manifests as an optional, independently deployable alternative, not the default free profile.
+The owner has exhausted Google Cloud free-tier eligibility. Use an always-on machine the owner already controls for n8n, expose only its loopback service through Tailscale Funnel HTTPS, and use GitHub Actions for FFmpeg rendering. Use SQLite locally and PostgreSQL/Supabase through SQLAlchemy. Google Cloud and Cloud Run are removed from the active deployment profile.
 
 ## Consequences
 
-- The VM must be kept in an eligible region/machine/disk configuration and guarded with billing alerts.
-- Rendering never competes with n8n for the VM's limited memory.
+- The host must remain powered, awake, patched, and connected; this profile has no cloud-compute SLA.
+- Funnel has public bandwidth limits and only uses the tailnet's `*.ts.net` hostname.
+- Rendering never competes with n8n for the host because it runs in GitHub Actions.
 - GitHub Actions minutes and Cloudinary retention require hard quotas.
-- A public HTTPS endpoint or tunnel is needed for callbacks.
-
+- No router port-forward or purchased domain is required.

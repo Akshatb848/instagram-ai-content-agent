@@ -1,7 +1,7 @@
 # Deployment checklist
 
-- [ ] Current e2-micro region/disk eligibility manually confirmed.
-- [ ] Billing budget alert configured.
+- [ ] Always-on owned machine, Docker auto-start, no-sleep policy, and reboot recovery verified.
+- [ ] Tailscale Funnel HTTPS and external-network health check verified.
 - [ ] Private GitHub repository and least-privilege secrets configured.
 - [ ] Domain, DNS, HTTPS, firewall, and secret store configured.
 - [ ] Supabase/PostgreSQL migration and restore tested.
@@ -10,4 +10,3 @@
 - [ ] Synthetic Reel passes ffprobe and visual safe-area inspection.
 - [ ] Meta permissions approved and one explicit test publication authorised.
 - [ ] Backup, restore, rollback, and credential rotation exercised.
-

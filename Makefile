@@ -28,11 +28,10 @@ seed:
 export-workflows:
 	node scripts/validate-workflows.mjs
 deploy-n8n:
-	bash infra/gce/deploy.sh
+	powershell -ExecutionPolicy Bypass -File infra/tailscale/deploy.ps1
 deploy-renderer:
 	@echo "Renderer is deployed by GitHub Actions"
 trigger:
 	@echo "Use workflow_dispatch with an opaque render_job_id"
 clean:
 	$(PYTHON) scripts/clean.py
-

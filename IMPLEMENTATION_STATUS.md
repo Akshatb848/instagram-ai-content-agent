@@ -23,7 +23,7 @@ Last updated: 2026-08-05
 | 7. n8n workflows | IN_PROGRESS | Ten importable, secret-free workflow exports | Credentialed operational nodes and activation pending |
 | 8. Telegram approval | NOT_STARTED | Signed, expiring, replay-safe authorised callbacks | Telegram bot token/user ID for sandbox verification |
 | 9. Instagram publication | NOT_STARTED | Idempotent official API adapter; mocks pass; live off | Meta app, professional account, permissions/token |
-| 10. Cloud deployment | NOT_STARTED | Idempotent e2-micro Docker deployment and rollback docs | GCP project/billing confirmation/domain |
+| 10. Zero-cost deployment | IN_PROGRESS | Owner-operated Docker host plus Tailscale Funnel, restart and rollback verification | Tailscale approval and public endpoint verification |
 | 11. QA and handover | NOT_STARTED | Quality gates, reports, runbooks, manual-actions list | External integration credentials for live verification |
 
 ## Phase log
@@ -47,3 +47,4 @@ Last updated: 2026-08-05
 - WF-01 opened in the editor with its Manual Trigger and Status nodes visible.
 - Dependency audit is pending because this Windows Python environment rejects the local TLS certificate chain when contacting PyPI; CI runs the same audit on Ubuntu.
 - Production activation remains blocked until signed webhook and provider credentials are configured.
+- Google Cloud was removed after the owner confirmed its free tier was exhausted. The active profile is an already-owned always-on host plus Tailscale Funnel; systematic external setup is documented in `docs/EXTERNAL_SETUP.md`.
