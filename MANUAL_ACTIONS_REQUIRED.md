@@ -13,3 +13,4 @@ External verification later requires the owner to:
 
 Do not paste personal passwords. Use platform secret stores for tokens and keys.
 
+Complete these actions using the ordered procedures and acceptance checks in `docs/EXTERNAL_VERIFICATION_RUNBOOK.md`.
