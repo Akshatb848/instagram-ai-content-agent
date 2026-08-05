@@ -1,0 +1,41 @@
+name: render-reel
+on:
+  workflow_dispatch:
+    inputs:
+      render_job_id:
+        description: Opaque UUID render job identifier
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: render-${{ inputs.render_job_id }}
+  cancel-in-progress: false
+jobs:
+  render:
+    if: ${{ inputs.render_job_id != '' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      RENDER_JOB_ID: ${{ inputs.render_job_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11", cache: pip}
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - run: pip install -r requirements.lock
+      - name: Validate opaque identifier
+        run: python -c "import os,uuid; uuid.UUID(os.environ['RENDER_JOB_ID'])"
+      - name: Fetch, render, validate, upload, callback
+        run: python scripts/render_job.py
+        env:
+          N8N_JOB_ENDPOINT: ${{ secrets.N8N_JOB_ENDPOINT }}
+          GITHUB_CALLBACK_SECRET: ${{ secrets.GITHUB_CALLBACK_SECRET }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: render-debug-${{ inputs.render_job_id }}
+          path: artifacts/debug/
+          retention-days: 3
+

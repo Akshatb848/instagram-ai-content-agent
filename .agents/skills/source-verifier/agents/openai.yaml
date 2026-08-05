@@ -1,0 +1,4 @@
+interface:
+  display_name: "source-verifier"
+  short_description: "Project workflow guardrails"
+  default_prompt: "Use this skill to implement and verify its project responsibility."

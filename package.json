@@ -1,0 +1,9 @@
+{
+  "name": "instagram-ai-content-agent",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "validate:workflows": "node scripts/validate-workflows.mjs"
+  }
+}
+

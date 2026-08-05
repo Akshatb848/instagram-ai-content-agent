@@ -1,0 +1,20 @@
+name: security
+on:
+  push:
+  pull_request:
+  schedule: [{cron: "17 4 * * 1"}]
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -e ".[dev]"
+      - run: pip-audit
+      - uses: gitleaks/gitleaks-action@v2
+

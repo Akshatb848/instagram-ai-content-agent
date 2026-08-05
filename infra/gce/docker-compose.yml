@@ -1,0 +1,19 @@
+services:
+  caddy:
+    image: caddy:2.10.0-alpine
+    ports: ["80:80", "443:443"]
+    environment: ["DEPLOY_DOMAIN"]
+    volumes: ["./Caddyfile:/etc/caddy/Caddyfile:ro", "caddy_data:/data"]
+    restart: unless-stopped
+    mem_limit: 120m
+    logging: {driver: json-file, options: {max-size: "10m", max-file: "3"}}
+  n8n:
+    image: n8nio/n8n:1.106.3
+    env_file: .env
+    expose: ["5678"]
+    volumes: ["n8n_data:/home/node/.n8n"]
+    restart: unless-stopped
+    mem_limit: 700m
+    logging: {driver: json-file, options: {max-size: "10m", max-file: "3"}}
+volumes: {caddy_data: {}, n8n_data: {}}
+

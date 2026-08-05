@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:16.4-alpine
+    environment:
+      POSTGRES_DB: instagram_agent
+      POSTGRES_USER: instagram_agent
+      POSTGRES_PASSWORD: local-only-change-me
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U instagram_agent"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+  n8n:
+    build:
+      context: .
+      dockerfile: infra/n8n/Dockerfile
+    depends_on:
+      postgres: {condition: service_healthy}
+    ports: ["127.0.0.1:5678:5678"]
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_DATABASE: instagram_agent
+      DB_POSTGRESDB_USER: instagram_agent
+      DB_POSTGRESDB_PASSWORD: local-only-change-me
+      N8N_ENCRYPTION_KEY: local-development-key-change-me
+      N8N_DIAGNOSTICS_ENABLED: "false"
+      N8N_PERSONALIZATION_ENABLED: "false"
+      EXECUTIONS_MODE: regular
+    mem_limit: 700m
+    restart: unless-stopped
+  renderer:
+    build:
+      context: .
+      dockerfile: infra/renderer/Dockerfile
+    profiles: ["render"]
+    volumes: ["./artifacts:/app/artifacts"]
+    environment:
+      AUTO_PUBLISH: "false"
+volumes:
+  postgres_data:
