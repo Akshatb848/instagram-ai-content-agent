@@ -27,6 +27,7 @@ services:
       N8N_ENCRYPTION_KEY: local-development-key-change-me
       N8N_DIAGNOSTICS_ENABLED: "false"
       N8N_PERSONALIZATION_ENABLED: "false"
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
       EXECUTIONS_MODE: regular
     mem_limit: 700m
     restart: unless-stopped

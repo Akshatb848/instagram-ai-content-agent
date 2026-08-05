@@ -1,4 +1,4 @@
-FROM n8nio/n8n:1.106.3
+FROM n8nio/n8n:1.121.0
 USER root
 COPY n8n/workflows /opt/project-workflows
 USER node

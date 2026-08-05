@@ -8,12 +8,13 @@ services:
     mem_limit: 120m
     logging: {driver: json-file, options: {max-size: "10m", max-file: "3"}}
   n8n:
-    image: n8nio/n8n:1.106.3
+    image: n8nio/n8n:1.121.0
     env_file: .env
+    environment:
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
     expose: ["5678"]
     volumes: ["n8n_data:/home/node/.n8n"]
     restart: unless-stopped
     mem_limit: 700m
     logging: {driver: json-file, options: {max-size: "10m", max-file: "3"}}
 volumes: {caddy_data: {}, n8n_data: {}}
-

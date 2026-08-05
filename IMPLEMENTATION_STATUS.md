@@ -20,7 +20,7 @@ Last updated: 2026-08-05
 | 4. Content generation | COMPLETE | Gemini/Ollama/mock abstraction and validated structured package | Gemini key only for live calls |
 | 5. Renderer | IN_PROGRESS | Synthetic 1080x1920 MP4, subtitles, cover, manifest, ffprobe pass | Piper voice/model and full synthetic render pending |
 | 6. GitHub Actions | IN_PROGRESS | Test, security, and bounded render workflows | GitHub repository/secrets for live dispatch |
-| 7. n8n workflows | BLOCKED_EXTERNAL_APPROVAL | Ten importable, secret-free workflow exports | User must create local n8n owner before UI import verification |
+| 7. n8n workflows | IN_PROGRESS | Ten importable, secret-free workflow exports | Credentialed operational nodes and activation pending |
 | 8. Telegram approval | NOT_STARTED | Signed, expiring, replay-safe authorised callbacks | Telegram bot token/user ID for sandbox verification |
 | 9. Instagram publication | NOT_STARTED | Idempotent official API adapter; mocks pass; live off | Meta app, professional account, permissions/token |
 | 10. Cloud deployment | NOT_STARTED | Idempotent e2-micro Docker deployment and rollback docs | GCP project/billing confirmation/domain |
@@ -42,5 +42,8 @@ Last updated: 2026-08-05
 - Ten workflow JSON files passed structural and embedded-secret validation.
 - Docker Compose built; PostgreSQL became healthy; n8n health endpoint returned HTTP 200.
 - In-app browser reached the n8n owner setup screen.
+- User created the local owner. n8n was upgraded to 1.121.0 after its critical-update warning.
+- CLI import reported ten successful imports; the UI showed all ten, total 10, inactive.
+- WF-01 opened in the editor with its Manual Trigger and Status nodes visible.
 - Dependency audit is pending because this Windows Python environment rejects the local TLS certificate chain when contacting PyPI; CI runs the same audit on Ubuntu.
-- n8n UI import is blocked until the owner account is created by the user.
+- Production activation remains blocked until signed webhook and provider credentials are configured.
