@@ -3,7 +3,6 @@
 **A fail-closed, human-approved pipeline for turning verified AI news into Instagram Reels: nothing is published without source-backed claims, a validated render, and a signed human approval.**
 
 [![test](https://github.com/Akshatb848/instagram-ai-content-agent/actions/workflows/test.yml/badge.svg)](https://github.com/Akshatb848/instagram-ai-content-agent/actions/workflows/test.yml)
-[![security](https://github.com/Akshatb848/instagram-ai-content-agent/actions/workflows/security.yml/badge.svg)](https://github.com/Akshatb848/instagram-ai-content-agent/actions/workflows/security.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 ![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)
 ![mypy strict](https://img.shields.io/badge/mypy-strict-informational.svg)
@@ -101,7 +100,7 @@ Tests cover URL canonicalisation, duplicate and prompt-injection detection, dete
 
 CI (`.github/workflows/`):
 - **test** — ruff, strict mypy, pytest with coverage gate, Alembic migration, n8n export validation (FFmpeg installed so the real render test runs).
-- **security** — pip-audit and gitleaks on every push/PR and weekly.
+- **security** — pip-audit and gitleaks on every push/PR and weekly. (GitHub auto-disabled this workflow for inactivity; re-enable it under Actions → security.)
 - **render-reel** — manually dispatched, bounded render job (blocked until live credentials are configured).
 
 ## Project structure
